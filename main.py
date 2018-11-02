@@ -3,6 +3,7 @@ from discord import Color
 from discord.ext import commands
 from discord.ext.commands import context
 
+from cogs.commands import admin
 from cogs.util import perms
 from util import presence, important, data
 
@@ -12,6 +13,7 @@ bot.remove_command("help")
 cogs = [
     "cogs.error",
     "cogs.dbl",
+    "cogs.guild_join",
     "cogs.commands.debug",
     "cogs.commands.help",
     "cogs.commands.misc",
@@ -45,7 +47,7 @@ async def process_commands(message: discord.Message):
     if ctx.command is None:
         if ctx.message.content.startswith(bot.user.mention):
             await ctx.send("Ey... what's up {0}?\nIf you need help do {1}help".format(ctx.author.mention, important.prefix))
-    elif data.disabled:
+    elif admin.disabled:
         if ctx.author.id not in data.owners:
             ctx = await bot.get_context(message, cls=context.Context)
             embed = discord.Embed(title="Error", description="The bot is currently disabled.", color=Color.red())

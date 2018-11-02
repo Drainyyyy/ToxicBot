@@ -94,6 +94,14 @@ class Misc:
         embed = Embed(title="Avatar", description="Avatar of {0}".format(target.mention), color=Color.from_rgb(125, 220, 113))
         embed.set_image(url=target.avatar_url)
         embed.add_field(name="Link", value=target.avatar_url, inline=False)
+        embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+
+    @commands.command(name="google")
+    async def _google(self, ctx, search):
+        embed = Embed(title="Google", description="[Click here to see the search result](http://lmgtfy.com/?q={0})".format(search)
+                      , color=Color.from_rgb(125, 220, 113))
+        embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
 

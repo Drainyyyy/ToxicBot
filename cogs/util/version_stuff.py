@@ -1,19 +1,11 @@
-Date = "---"
-Version = "1.1.05a"
-Recent = [
+date = "---"
+version = "1.1.06a"
+recent = [
     "**__Changes__**",
-    "__Ping__",
-    "_Suddenly implemented the ping._",
+    "__Guild_Join__",
+    "_When the bot joins a guild a message is sent._",
     "\n**__Commands__**",
-    "+__report__",
-    "_Report if a user abuses the bot._",
-    "+__avatar__",
-    "_Get a users avatar picture._",
+    "+__google__",
+    "_'Googles' things for you._",
 
 ]
-
-"""
-"**__Changes__**",
-    "__Command__",
-    "_Desc._",
-"""

@@ -5,7 +5,7 @@ from cogs import error
 from util import data
 
 
-class Basic:
+class Help:
     def __init__(self, bot):
         self.bot = bot
 
@@ -25,4 +25,4 @@ class Basic:
 
 
 def setup(bot):
-    bot.add_cog(Basic(bot))
+    bot.add_cog(Help(bot))

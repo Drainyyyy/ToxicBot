@@ -29,9 +29,9 @@ class Special:
     @commands.command(name="changelogs", aliases=["changes", "changenotes"])
     async def _changelogs(self, ctx):
         embed = Embed(title="Changelogs", color=Color.from_rgb(125, 220, 113))
-        embed.add_field(name="Recent changes", value="\n".join(map(str, version_stuff.Recent)), inline=False)
-        embed.add_field(name="Date", value=version_stuff.Date, inline=False)
-        embed.add_field(name="Current version", value=version_stuff.Version, inline=False)
+        embed.add_field(name="Recent changes", value="\n".join(map(str, version_stuff.recent)), inline=False)
+        embed.add_field(name="Date", value=version_stuff.date, inline=False)
+        embed.add_field(name="Current version", value=version_stuff.version, inline=False)
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
 
         await ctx.send(embed=embed)

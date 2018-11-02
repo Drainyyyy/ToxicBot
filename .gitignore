@@ -5,3 +5,4 @@ __pycache__/
 
 
 util/important.py
+cogs/util/version_stuff.py

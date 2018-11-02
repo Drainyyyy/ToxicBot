@@ -2,7 +2,7 @@ import discord
 import asyncio
 import random
 
-from cogs.util.version_stuff import Version
+from cogs.util.version_stuff import version
 from util import data, important
 
 
@@ -19,7 +19,7 @@ class Presence:
                 (discord.Status.dnd, discord.ActivityType.listening, "{0}help".format(important.prefix)),
                 (discord.Status.dnd, discord.ActivityType.playing, "with your data"),
                 (discord.Status.dnd, discord.ActivityType.watching, data.website),
-                (discord.Status.dnd, discord.ActivityType.watching, "nothing | v{0}".format(Version, important.prefix)),
+                (discord.Status.dnd, discord.ActivityType.watching, "nothing | v{0}".format(version, important.prefix)),
                 (discord.Status.dnd, discord.ActivityType.watching, "my script on {0}".format(data.script_link)),
             ]
 

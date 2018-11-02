@@ -4,7 +4,8 @@ import discord
 from discord import Color
 from discord.ext import commands
 from cogs.util import perms
-from util import data
+
+disabled = False
 
 
 class Admin:
@@ -84,7 +85,7 @@ class Admin:
         embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
         await drainyyy.send(embed=embed)
-        data.disabled = True
+        disabled = True
 
     @_secure.command(name="enable")
     @perms.is_trusted()
@@ -97,7 +98,7 @@ class Admin:
         embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
         await drainyyy.send(embed=embed)
-        data.disabled = False
+        disabled = False
 
 
 def setup(bot):
