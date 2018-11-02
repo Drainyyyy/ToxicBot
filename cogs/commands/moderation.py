@@ -13,6 +13,7 @@ class Moderation:
         self.bot = bot
 
     @commands.command(name="report")
+    @commands.cooldown(1, 10)
     async def _report(self, ctx, target: discord.Member, proof, *, reason):
         drainyyy = self.bot.get_user(249221746006163467)
         embed = discord.Embed(title="Report", color=Color.red())

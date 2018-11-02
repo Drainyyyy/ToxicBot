@@ -4,11 +4,11 @@ import asyncio
 from util import important
 
 
-class DblApi:
+class Dbl:
 
     def __init__(self, bot):
         self.bot = bot
-        self.token = important.prefix
+        self.token = important.dbltoken
         self.dblpy = dbl.Client(self.bot, self.token)
         self.bot.loop.create_task(self.update_stats())
 
@@ -25,4 +25,4 @@ class DblApi:
 
 
 def setup(bot):
-    bot.add_cog(DblApi(bot))
+    bot.add_cog(Dbl(bot))

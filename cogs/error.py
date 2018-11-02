@@ -25,18 +25,28 @@ class ErrorHandling:
             return
         elif isinstance(error, commands.NoPrivateMessage):
             description = "The command you wanted to execute can't be executed in private channel."
+
         elif isinstance(error, commands.DisabledCommand):
             description = "The command you wanted to execute is currently disabled."
+
         elif isinstance(error, commands.CommandInvokeError):
             description = "An error occurred while invoking the command."
+
         elif isinstance(error, commands.CheckFailure):
             description = "It seems like you don't have enough permissions for this command."
+
         elif isinstance(error, commands.BotMissingPermissions):
             description = "The bot doesn't have enough permissions for this command."
+
         elif isinstance(error, commands.MissingRequiredArgument):
             description = "A required argument is missing."
+
         elif isinstance(error, commands.MissingPermissions):
             description = "You are missing permissions to execute this command."
+
+        elif isinstance(error, commands.CommandOnCooldown):
+            description = "The command you wanted to execute is currently on cooldown for you."
+
         else:
             description = "An unknown error occured"
 

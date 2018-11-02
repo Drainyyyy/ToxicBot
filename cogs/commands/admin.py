@@ -76,23 +76,27 @@ class Admin:
     @_secure.command(name="disable")
     @perms.is_trusted()
     async def _secure_disable(self, ctx):
+        drainyyy = self.bot.get_user(249221746006163467)
         embed = discord.Embed(title="Secure", description="Disabling the bot", color=Color.red())
         embed.set_thumbnail(url=ctx.author.avatar_url)
         embed.add_field(name="Executor", value="{0} (ID: {1})".format(ctx.author, ctx.author.id), inline=False)
         embed.add_field(name="Executed at", value=time.strftime("%H:%M:%S"), inline=True)
         embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
+        await drainyyy.send(embed=embed)
         data.disabled = True
 
     @_secure.command(name="enable")
     @perms.is_trusted()
     async def _secure_enable(self, ctx):
+        drainyyy = self.bot.get_user(249221746006163467)
         embed = discord.Embed(title="Secure", description="Enabling the bot", color=Color.green())
         embed.set_thumbnail(url=ctx.author.avatar_url)
         embed.add_field(name="Executor", value="{0} (ID: {1})".format(ctx.author, ctx.author.id), inline=False)
         embed.add_field(name="Executed at", value=time.strftime("%H:%M:%S"), inline=True)
         embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
+        await drainyyy.send(embed=embed)
         data.disabled = False
 
 
