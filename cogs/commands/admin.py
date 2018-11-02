@@ -11,14 +11,14 @@ class Admin:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="stop", aliases=['shutdown'])
+    @commands.command(name="stop", aliases=["shutdown"])
     @perms.is_owner()
     async def _stop(self, ctx):
-        embed = discord.Embed(title='Shutdown', description='Shutting down', color=Color.red())
+        embed = discord.Embed(title="Shutdown", description="Shutting down", color=Color.red())
         embed.set_thumbnail(url=ctx.author.avatar_url)
-        embed.add_field(name='Executor', value='{0} (ID: {1})'.format(ctx.author, ctx.author.id), inline=False)
-        embed.add_field(name='Executed at', value=time.strftime('%H:%M:%S'), inline=True)
-        embed.add_field(name='Server', value='{0} (ID: {1})'.format(ctx.guild.name, ctx.guild.id), inline=False)
+        embed.add_field(name="Executor", value="{0} (ID: {1})".format(ctx.author, ctx.author.id), inline=False)
+        embed.add_field(name="Executed at", value=time.strftime("%H:%M:%S"), inline=True)
+        embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
         await self.bot.close()
 
@@ -47,17 +47,17 @@ class Admin:
     async def _leaveguild(self, ctx, guild_id: int):
         guild = self.bot.get_guild(guild_id)
         await guild.leave()
-        embed = discord.Embed(title='Leave-Guild', description='Leaving guild', color=Color.red())
+        embed = discord.Embed(title="Leave-Guild", description="Leaving guild", color=Color.red())
         embed.set_thumbnail(url=ctx.author.avatar_url)
-        embed.add_field(name='Executor', value='{0} (ID: {1})'.format(ctx.author, ctx.author.id), inline=False)
-        embed.add_field(name='Executed at', value=time.strftime('%H:%M:%S'), inline=True)
-        embed.add_field(name='Server', value='{0} (ID: {1})'.format(ctx.guild.name, ctx.guild.id), inline=False)
+        embed.add_field(name="Executor", value="{0} (ID: {1})".format(ctx.author, ctx.author.id), inline=False)
+        embed.add_field(name="Executed at", value=time.strftime("%H:%M:%S"), inline=True)
+        embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
 
-    @commands.command(name="serverlist", aliases=['servers', 'guilds'])
+    @commands.command(name="serverlist", aliases=["servers", "guilds"])
     @perms.is_trusted()
     async def _serverlist(self, ctx):
-        embed = discord.Embed(title='Serverlist', description='```' + ' | '.join(map(str, self.bot.guilds)) + '```', color=Color.blue())
+        embed = discord.Embed(title="Serverlist", description="```" + " | ".join(map(str, self.bot.guilds)) + "```", color=Color.blue())
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
@@ -69,37 +69,31 @@ class Admin:
     @commands.group(name="secure", invoke_without_command=True)
     @perms.is_trusted()
     async def _secure(self, ctx):
-        embed = discord.Embed(title='Secure', description='You can secure the bot by disabling it and some more...', color=Color.blue())
+        embed = discord.Embed(title="Secure", description="You can secure the bot by disabling it and some more...", color=Color.blue())
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
     @_secure.command(name="disable")
     @perms.is_trusted()
     async def _secure_disable(self, ctx):
-        embed = discord.Embed(title='Secure', description='Disabling the bot', color=Color.red())
+        embed = discord.Embed(title="Secure", description="Disabling the bot", color=Color.red())
         embed.set_thumbnail(url=ctx.author.avatar_url)
-        embed.add_field(name='Executor', value='{0} (ID: {1})'.format(ctx.author, ctx.author.id), inline=False)
-        embed.add_field(name='Executed at', value=time.strftime('%H:%M:%S'), inline=True)
-        embed.add_field(name='Server', value='{0} (ID: {1})'.format(ctx.guild.name, ctx.guild.id), inline=False)
+        embed.add_field(name="Executor", value="{0} (ID: {1})".format(ctx.author, ctx.author.id), inline=False)
+        embed.add_field(name="Executed at", value=time.strftime("%H:%M:%S"), inline=True)
+        embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
         data.disabled = True
 
     @_secure.command(name="enable")
     @perms.is_trusted()
     async def _secure_enable(self, ctx):
-        embed = discord.Embed(title='Secure', description='Enabling the bot', color=Color.green())
+        embed = discord.Embed(title="Secure", description="Enabling the bot", color=Color.green())
         embed.set_thumbnail(url=ctx.author.avatar_url)
-        embed.add_field(name='Executor', value='{0} (ID: {1})'.format(ctx.author, ctx.author.id), inline=False)
-        embed.add_field(name='Executed at', value=time.strftime('%H:%M:%S'), inline=True)
-        embed.add_field(name='Server', value='{0} (ID: {1})'.format(ctx.guild.name, ctx.guild.id), inline=False)
+        embed.add_field(name="Executor", value="{0} (ID: {1})".format(ctx.author, ctx.author.id), inline=False)
+        embed.add_field(name="Executed at", value=time.strftime("%H:%M:%S"), inline=True)
+        embed.add_field(name="Server", value="{0} (ID: {1})".format(ctx.guild.name, ctx.guild.id), inline=False)
         await ctx.send(embed=embed)
         data.disabled = False
-
-    '''
-    @commands.command()
-    @perms.is_owner()
-    async def blacklist(self, ctx, user: discord.Member):
-        '''
 
 
 def setup(bot):

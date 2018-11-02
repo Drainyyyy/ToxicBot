@@ -13,9 +13,9 @@ class Information:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="botinfo", aliases=['info', 'binfo'])
+    @commands.command(name="botinfo", aliases=["info", "binfo"])
     async def _botinfo(self, ctx):
-        embed = discord.Embed(title='Bot information', description="Here is some information about me:",
+        embed = discord.Embed(title="Bot information", description="Here is some information about me:",
                               color=Color.blue())
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="Prefix", value="{0}".format(important.prefix), inline=False)
@@ -37,9 +37,9 @@ class Information:
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name="serverinfo", aliases=['sinfo'])
+    @commands.command(name="serverinfo", aliases=["sinfo"])
     async def _serverinfo(self, ctx):
-        embed = discord.Embed(title='Server information', description='**{0}**'.format(ctx.guild),
+        embed = discord.Embed(title="Server information", description="**{0}**".format(ctx.guild),
                               color=Color.blue())
         embed.set_thumbnail(url=ctx.guild.icon_url)
         embed.add_field(name="Name", value=ctx.guild, inline=True)
@@ -59,29 +59,23 @@ class Information:
 
     @commands.command(name="userinfo", aliases=["uinfo"])
     async def _userinfo(self, ctx, user: discord.Member):
-        if user.status == discord.Status.dnd:
-            status = "Do Not Disturb"
-        elif user.status == discord.Status.invisible:
-            status = "invisible"
-        else:
-            status = user.status
 
-        embed = discord.Embed(title='User information', description="Information about {0}".format(user.mention), color=Color.blue())
+        embed = discord.Embed(title="User information", description="Information about {0}".format(user.mention), color=Color.blue())
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name="Name#Discriminator", value=str(user), inline=True)
         embed.add_field(name="Nickname", value=user.nick, inline=True)
         embed.add_field(name="ID", value=str(user.id), inline=False)
-        embed.add_field(name="Status", value=status, inline=True)
-        embed.add_field(name="Roles", value="This user has **{0}** roles".format(len(user.roles)), inline=True)
+        embed.add_field(name="Status", value=user.status, inline=True)
+        embed.add_field(name="Roles", value="This user has **{0}** roles".format(len(user.roles) - 1), inline=True)
         embed.add_field(name="Activity", value="{0}".format(user.activity.name), inline=True)
         embed.add_field(name="Join date", value=user.joined_at.__format__("%A, %d. %B %Y at %H:%M:%S"), inline=False)
         embed.add_field(name="Account creation date", value=user.created_at.__format__("%A, %d. %B %Y at %H:%M:%S"), inline=False)
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name="stats", aliases=['statistics'])
+    @commands.command(name="stats", aliases=["statistics"])
     async def _stats(self, ctx):
-        embed = discord.Embed(title='Statistics', description="Here are my stats:", color=Color.blue())
+        embed = discord.Embed(title="Statistics", description="Here are my stats:", color=Color.blue())
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="Guilds", value="{0}".format(len(self.bot.guilds)), inline=True)
         embed.add_field(name="Users", value="{0}".format(len(self.bot.users)), inline=True)

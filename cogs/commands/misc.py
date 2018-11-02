@@ -44,7 +44,7 @@ class Misc:
             "It's heads!",
             "It's tails!",
             "It's tails!",
-            'Oh. You lost the coin... Try again.'
+            "Oh. You lost the coin... Try again."
         ]
         await ctx.send(random.choice(coins))
 
@@ -52,20 +52,20 @@ class Misc:
     async def _yesno(self, ctx, *, question):
         yesno = random.randint(1, 2)
         if yesno == 1:
-            embed = Embed(title='Yes/No', description='Let me answer your question.', color=Color.green())
+            embed = Embed(title="Yes/No", description="Let me answer your question.", color=Color.green())
             embed.add_field(name="Your question", value="```{0}```".format(question), inline=False)
-            embed.add_field(name="My answer", value='Yes', inline=False)
+            embed.add_field(name="My answer", value="Yes", inline=False)
             embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         if yesno == 2:
-            embed = Embed(title='Yes/No', description='Let me answer your question.', color=Color.red())
+            embed = Embed(title="Yes/No", description="Let me answer your question.", color=Color.red())
             embed.add_field(name="Your question", value="```{0}```".format(question), inline=False)
-            embed.add_field(name="My answer", value='No', inline=False)
+            embed.add_field(name="My answer", value="No", inline=False)
             embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
     @commands.command(name="afk")
-    async def _afk(self, ctx, *, reason='_No reason submitted._'):
+    async def _afk(self, ctx, *, reason="_No reason submitted._"):
 
         if ctx.author.id not in afk:
 

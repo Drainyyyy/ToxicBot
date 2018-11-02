@@ -12,7 +12,7 @@ class Special:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="devmsg", aliases=['suggest'])
+    @commands.command(name="devmsg", aliases=["suggest"])
     async def _devmsg(self, ctx, *, message):
         embed = Embed(title="Devmsg", description="Successfully sent your suggestion to my dev.", color=Color.from_rgb(125, 220, 113))
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
@@ -26,9 +26,9 @@ class Special:
         drainyyy = self.bot.get_user(249221746006163467)
         await drainyyy.send(embed=embed)
 
-    @commands.command(name="changelogs", aliases=['changes', 'changenotes'])
+    @commands.command(name="changelogs", aliases=["changes", "changenotes"])
     async def _changelogs(self, ctx):
-        embed = Embed(title='Changelogs', color=Color.from_rgb(125, 220, 113))
+        embed = Embed(title="Changelogs", color=Color.from_rgb(125, 220, 113))
         embed.add_field(name="Recent changes", value="\n".join(map(str, version_stuff.Recent)), inline=False)
         embed.add_field(name="Date", value=version_stuff.Date, inline=False)
         embed.add_field(name="Current version", value=version_stuff.Version, inline=False)

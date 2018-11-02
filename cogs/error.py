@@ -40,7 +40,7 @@ class ErrorHandling:
         else:
             description = "An unknown error occured"
 
-        embed = discord.Embed(title='Error', description=description, color=Color.red())
+        embed = discord.Embed(title="Error", description=description, color=Color.red())
         embed.add_field(name="Error message", value="```{0}```".format(error), inline=False)
         embed.set_footer(text="Error triggered by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)

@@ -7,26 +7,26 @@ from cogs.util import perms
 from util import presence, important, data
 
 bot = commands.Bot(commands.when_mentioned_or(important.prefix), case_insensitive=True)
-bot.remove_command('help')
+bot.remove_command("help")
 
 cogs = [
-    'cogs.error',
-    'cogs.dbl.unfinished',
-    'cogs.commands.debug',
-    'cogs.commands.help',
-    'cogs.commands.misc',
-    'cogs.commands.special',
-    'cogs.commands.admin',
-    'cogs.commands.moderation',
-    'cogs.commands.information',
+    "cogs.error",
+    "cogs.dbl",
+    "cogs.commands.debug",
+    "cogs.commands.help",
+    "cogs.commands.misc",
+    "cogs.commands.special",
+    "cogs.commands.admin",
+    "cogs.commands.moderation",
+    "cogs.commands.information",
 ]
 
 
 @bot.event
 async def on_ready():
     await bot.wait_until_ready()
-    print('Logged in as {0} ({1})'.format(bot.user, bot.user.id))
-    print('Running on {0} servers'.format(len(bot.guilds)))
+    print("Logged in as {0} ({1})".format(bot.user, bot.user.id))
+    print("Running on {0} servers".format(len(bot.guilds)))
     change_status = presence.Presence(bot)
     await change_status.change_status()
 
@@ -48,7 +48,7 @@ async def process_commands(message: discord.Message):
     elif data.disabled:
         if ctx.author.id not in data.owners:
             ctx = await bot.get_context(message, cls=context.Context)
-            embed = discord.Embed(title='Error', description='The bot is currently disabled.', color=Color.red())
+            embed = discord.Embed(title="Error", description="The bot is currently disabled.", color=Color.red())
             embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
             return
@@ -57,33 +57,33 @@ async def process_commands(message: discord.Message):
 for extension in cogs:
     try:
         bot.load_extension(extension)
-        print('Successfully loaded {0}'.format(extension))
+        print("Successfully loaded {0}".format(extension))
     except Exception as error:
-        print('{0} cannot be loaded. [{1}]'.format(extension, error))
+        print("{0} cannot be loaded. [{1}]".format(extension, error))
 
 
-@bot.command(name="loadcog", aliases=['addcog'])
+@bot.command(name="loadcog", aliases=["addcog"])
 @perms.is_owner()
 async def _loadcog(ctx, extension):
         try:
             bot.load_extension(extension.lower())
             if not cogs.__contains__(extension.lower()):
                 cogs.insert(0, extension.lower())
-            await ctx.send('``{0}`` has been loaded.'.format(extension))
+            await ctx.send("``{0}`` has been loaded.".format(extension))
         except Exception:
-            await ctx.send('``{0}`` cannot be loaded.'.format(extension))
+            await ctx.send("``{0}`` cannot be loaded.".format(extension))
 
 
-@bot.command(nane="reloadcogs", aliases=['reload'])
+@bot.command(nane="reloadcogs", aliases=["reload"])
 @perms.is_owner()
 async def _reloadcogs(ctx):
     for extension in cogs:
         try:
             bot.unload_extension(extension)
             bot.load_extension(extension)
-            await ctx.send('``{0}`` has been reloaded.'.format(extension))
+            await ctx.send("``{0}`` has been reloaded.".format(extension))
         except Exception as error:
-            print('{0} cannot be reloaded. [{1}]'.format(extension, error))
+            print("{0} cannot be reloaded. [{1}]".format(extension, error))
 
 bot.run(important.token)
 
