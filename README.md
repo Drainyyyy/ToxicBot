@@ -10,5 +10,6 @@ A list of all commands can be found on my [website](https://drainyyy.jimdofree.c
 ## Support me
 
 You can support me by voting the bot or inviting it to your server.
+
 |Invite			 			|[Add me](https://discordapp.com/api/oauth2/authorize?client_id=497000115194822661&permissions=8&scope=bot)            
 |Vote on DiscordBots.org    |[Vote](https://discordbots.org/bot/497000115194822661/vote)
