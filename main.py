@@ -76,7 +76,7 @@ async def _loadcog(ctx, extension):
             await ctx.send("``{0}`` cannot be loaded.".format(extension))
 
 
-@bot.command(nane="reloadcogs", aliases=["reload"])
+@bot.command(name="reloadcogs", aliases=["reload"])
 @perms.is_owner()
 async def _reloadcogs(ctx):
     for extension in cogs:
@@ -88,5 +88,3 @@ async def _reloadcogs(ctx):
             print("{0} cannot be reloaded. [{1}]".format(extension, error))
 
 bot.run(important.token)
-
-#secure fertig

@@ -16,13 +16,8 @@ class ErrorHandling:
     @staticmethod
     async def on_command_error(ctx, error):
         if isinstance(error, commands.CommandNotFound):
-            embed = discord.Embed(title='Error', description="It seems like the command you wanted to execute doesn't exist.", color=Color.red())
-            embed.add_field(name="Command list", value="If you want to see a list of all commands [click here]({0})"
-                            .format(data.website), inline=False)
-            embed.add_field(name="Error message", value="```{0}```".format(error), inline=False)
-            embed.set_footer(text="Error triggered by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
-            await ctx.send(embed=embed)
-            return
+            description = "It seems like the command you wanted to execute doesn't exist.\n" \
+                "If you want to see a list of all commands [click here]({0}).".format(data.website)
         elif isinstance(error, commands.NoPrivateMessage):
             description = "The command you wanted to execute can't be executed in private channel."
 

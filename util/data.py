@@ -3,5 +3,5 @@ owners = [249221746006163467]
 trusted = [249221746006163467]
 bot_role = "toxicbot"
 website = "https://drainyyy.jimdofree.com/"
-script_link = "https://github.com/Drainyyyy/ToxicBot"
+github = "https://github.com/Drainyyyy/ToxicBot"
 msgs = 0

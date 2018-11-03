@@ -1,11 +1,7 @@
-import random
-import time
-
-from discord import Embed, Color, user
+from discord import Embed, Color
 from discord.ext import commands
 
 from cogs.util import version_stuff
-from util import data
 
 
 class Special:

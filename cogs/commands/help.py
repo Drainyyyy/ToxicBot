@@ -9,7 +9,7 @@ class Help:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="help")
+    @commands.command(name="help", aliases=["commands"])
     async def _help(self, ctx):
 
         embed = Embed(title="HELP", description="For the some commands a special role is required. "

@@ -1,5 +1,5 @@
+import asyncio
 import random
-import time
 
 import discord
 from discord import Embed, Color
@@ -101,6 +101,21 @@ class Misc:
     async def _google(self, ctx, search):
         embed = Embed(title="Google", description="[Click here to see the search result](http://lmgtfy.com/?q={0})".format(search)
                       , color=Color.from_rgb(125, 220, 113))
+        embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+
+    @commands.command(name="alarm")
+    async def _alarm(self, ctx, amount: int, *, notification):
+        embed = Embed(title="Alarm", description="Set alarm for {0}s with notification:```{1}```".format(amount, notification),
+                      color=Color.orange())
+        embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+
+        await asyncio.sleep(amount)
+
+        await ctx.send("{0} riiiiing:alarm_clock:".format(ctx.author.mention))
+        embed = Embed(title="Alarm", description="Alarm for ```{0}```".format(notification),
+                      color=Color.from_rgb(125, 220, 113))
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 

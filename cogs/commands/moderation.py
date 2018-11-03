@@ -2,7 +2,7 @@ import asyncio
 import time
 
 import discord
-from discord import Color, message
+from discord import Color
 from discord.ext import commands
 
 from util import data
@@ -29,7 +29,7 @@ class Moderation:
 
     @commands.command(name="ban")
     @commands.has_role(data.bot_role)
-    async def _ban(self, ctx, target: discord.Member, *, reason="_No reason submitted._"):
+    async def _ban(self, ctx, target: discord.Member, *, reason="No reason submitted."):
 
         embed = discord.Embed(title="Ban", color=Color.red())
         embed.add_field(name="Executor", value="{0} ({1})".format(ctx.author.mention, ctx.author), inline=False)
@@ -39,14 +39,20 @@ class Moderation:
         embed.add_field(name="Reason", value="```{0}```".format(reason), inline=False)
         embed.set_footer(text="ID: {0}".format(target.id))
 
-        await target.send(embed=embed)
         await ctx.send(embed=embed)
+        try:
+            await target.send(embed=embed)
+        except Exception as error:
+            embed = discord.Embed(title="Error", description="Ban message couldn't be sent to **{0}**.".format(target), color=Color.red())
+            embed.add_field(name="Error message", value="```{0}```".format(error), inline=False)
+            embed.set_footer(text="Error triggered by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
         await target.ban()
 
     @commands.command(name="kick")
     @commands.has_role(data.bot_role)
-    async def _kick(self, ctx, target: discord.Member, *, reason="_No reason submitted._"):
+    async def _kick(self, ctx, target: discord.Member, *, reason="No reason submitted."):
 
         embed = discord.Embed(title="Kick", color=Color.red())
         embed.add_field(name="Executor", value="{0} ({1})".format(ctx.author.mention, ctx.author), inline=False)
@@ -56,8 +62,14 @@ class Moderation:
         embed.add_field(name="Reason", value="```{0}```".format(reason), inline=False)
         embed.set_footer(text="ID: {0}".format(target.id))
 
-        await target.send(embed=embed)
         await ctx.send(embed=embed)
+        try:
+            await target.send(embed=embed)
+        except Exception as error:
+            embed = discord.Embed(title="Error", description="Kick message couldn't be sent to **{0}**.".format(target), color=Color.red())
+            embed.add_field(name="Error message", value="```{0}```".format(error), inline=False)
+            embed.set_footer(text="Error triggered by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
         await target.kick()
 

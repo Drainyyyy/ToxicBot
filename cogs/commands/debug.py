@@ -1,6 +1,5 @@
 from discord.ext import commands
 
-from cogs.util import perms
 from util import data
 
 

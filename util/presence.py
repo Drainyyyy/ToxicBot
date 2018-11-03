@@ -20,7 +20,7 @@ class Presence:
                 (discord.Status.dnd, discord.ActivityType.playing, "with your data"),
                 (discord.Status.dnd, discord.ActivityType.watching, data.website),
                 (discord.Status.dnd, discord.ActivityType.watching, "nothing | v{0}".format(version, important.prefix)),
-                (discord.Status.dnd, discord.ActivityType.watching, "my script on {0}".format(data.script_link)),
+                (discord.Status.dnd, discord.ActivityType.watching, data.github),
             ]
 
             status, activity_type, activity = random.choice(presences)

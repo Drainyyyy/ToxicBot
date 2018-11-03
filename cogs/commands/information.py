@@ -1,5 +1,4 @@
 import sys
-from datetime import datetime
 
 import discord
 from discord import Color
@@ -59,12 +58,17 @@ class Information:
     @commands.command(name="userinfo", aliases=["uinfo"])
     async def _userinfo(self, ctx, user: discord.Member):
 
+        if user.status is None:
+            status = "None"
+        else:
+            status = user.status
+
         embed = discord.Embed(title="User information", description="Information about {0}".format(user.mention), color=Color.blue())
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name="Name#Discriminator", value=str(user), inline=True)
         embed.add_field(name="Nickname", value=user.nick, inline=True)
         embed.add_field(name="ID", value=str(user.id), inline=False)
-        embed.add_field(name="Status", value=user.status, inline=True)
+        embed.add_field(name="Status", value=status, inline=True)
         embed.add_field(name="Roles", value="This user has **{0}** roles".format(len(user.roles) - 1), inline=True)
         embed.add_field(name="Activity", value="{0}".format(user.activity.name), inline=True)
         embed.add_field(name="Join date", value=user.joined_at.__format__("%A, %d. %B %Y at %H:%M:%S"), inline=False)
