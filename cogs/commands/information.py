@@ -12,30 +12,30 @@ class Information:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="botinfo", aliases=["info", "binfo"])
+    @commands.command(name="botinfo", aliases=["info", "binfo", "botinformation"])
     async def _botinfo(self, ctx):
-        embed = discord.Embed(title="Bot information", description="Here is some information about me:",
+        drainyyy = self.bot.get_user(249221746006163467)
+        embed = discord.Embed(title="Bot information",
+                              description="| [Patreon]({}) | [Server]({}) | [Github]({}) | [Website]({}) | [Invite]({}) | [Vote]({}) |"
+                              .format(data.patreon, data.my_server, data.github, data.website, data.invite_link, data.dbl_vote),
                               color=Color.blue())
         embed.set_thumbnail(url=self.bot.user.avatar_url)
-        embed.add_field(name="Prefix", value="{0}".format(important.prefix), inline=False)
-        embed.add_field(name="Owner", value="Drainyyy#9339", inline=True)
-        embed.add_field(name="Guilds", value="{0} Guilds".format(len(self.bot.guilds)), inline=True)
-        embed.add_field(name="User", value="{0} Users".format(len(self.bot.users)), inline=True)
-        embed.add_field(name="Version", value=version_stuff.version, inline=True)
-        embed.add_field(name="Ping", value="{0}ms".format(round(self.bot.latency * 1000)), inline=True)
-        embed.add_field(name="Help", value="For help do {0}help".format(important.prefix), inline=True)
-        embed.add_field(name="Library", value="[discord.py](https://github.com/Rapptz/discord.py)\ndiscord.py version: {1}\n"
-                                              "Python version: {0[0]}.{0[1]}.{0[2]}".format(sys.version_info, discord.__version__), inline=True)
-        embed.add_field(name="Support", value="[Join our server](https://discord.gg/7hwqtSD)"
-                                              "\n[Vote on discordbots.org](https://discordbots.org/bot/497000115194822661/vote)"
-                                              "\n[My website]({0})"
-                                              "\n[Add me to your server]({1})".format(data.website, data.invite_link), inline=True)
+        embed.add_field(name="Prefix", value=important.prefix, inline=False)
+        embed.add_field(name="Help", value="For help do **{0}help**".format(important.prefix), inline=True)
+        embed.add_field(name="Owner", value=drainyyy, inline=True)
+        embed.add_field(name="Ping", value="**{}**ms".format(round(self.bot.latency * 1000)), inline=True)
+        embed.add_field(name="Version", value="v**{}**".format(version_stuff.version), inline=True)
+        embed.add_field(name="Guilds", value="**{0}** Guilds".format(len(self.bot.guilds)), inline=True)
+        embed.add_field(name="User", value="**{0}** Users".format(len(self.bot.users)), inline=True)
+        embed.add_field(name="Library", value="**[discord.py](https://github.com/Rapptz/discord.py)** v**{}**"
+                        .format(discord.__version__), inline=True)
+        embed.add_field(name="System", value="Python version: **{0[0]}.{0[1]}.{0[2]}**".format(sys.version_info), inline=True)
         embed.add_field(name="Other", value="If a user abuses the bot report him with a screen as proof. Reason can be whatever you want.",
                         inline=False)
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name="serverinfo", aliases=["sinfo"])
+    @commands.command(name="serverinfo", aliases=["sinfo", "serverinformation"])
     async def _serverinfo(self, ctx):
         embed = discord.Embed(title="Server information", description="**{0}**".format(ctx.guild),
                               color=Color.blue())
@@ -55,7 +55,7 @@ class Information:
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name="userinfo", aliases=["uinfo"])
+    @commands.command(name="userinfo", aliases=["uinfo", "userinformation"])
     async def _userinfo(self, ctx, user: discord.Member):
 
         if user.status is None:
@@ -78,7 +78,7 @@ class Information:
 
     @commands.command(name="stats", aliases=["statistics"])
     async def _stats(self, ctx):
-        embed = discord.Embed(title="Statistics", description="Here are my stats:", color=Color.blue())
+        embed = discord.Embed(title="Statistics", description="Here are my stats", color=Color.blue())
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="Guilds", value="{0}".format(len(self.bot.guilds)), inline=True)
         embed.add_field(name="Users", value="{0}".format(len(self.bot.users)), inline=True)

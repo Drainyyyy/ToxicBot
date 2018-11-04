@@ -18,24 +18,19 @@ class Guild_Join:
         else:
             channel = guild.system_channel
 
-        embed = discord.Embed(title="Introducing me", description="Hey I'm {0}.\nHere is some general information about me".format(self.bot.user)
+        embed = discord.Embed(title="Introducing me", description="Hey I'm {}.\nHere is some general information about me".format(self.bot.user)
                               , color=Color.blue())
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         embed.add_field(name="Prefix", value=important.prefix, inline=False)
-        embed.add_field(name="Help", value="{0}help".format(important.prefix), inline=True)
+        embed.add_field(name="Help", value="For help do **{}help**".format(important.prefix), inline=True)
+        embed.add_field(name="Information", value="For information do **{}info**".format(important.prefix), inline=True)
         embed.add_field(name="Owner", value=drainyyy, inline=True)
-        embed.add_field(name="Version", value=version_stuff.version, inline=True)
-        embed.add_field(name="Library", value="[discord.py](https://github.com/Rapptz/discord.py)\ndiscord.py version: {1}\n"
-                                              "Python version: {0[0]}.{0[1]}.{0[2]}".format(sys.version_info, discord.__version__), inline=False)
-        embed.add_field(name="Support", value="[Our Discord server](https://discord.gg/7hwqtSD)"
-                                              " - Here you can give me suggestions of new commands (you can also use the devmsg command)."
-                                              "\n[Vote](https://discordbots.org/bot/497000115194822661/vote)"
-                                              " - Every vote helps."
-                                              "\n[Website]({0})"
-                                              " - It's possible that the website is sometimes little bit buggy."
-                                              "\n[Invite]({1})"
-                                              " - Invite me to other servers so our community can grow up faster."
-                        .format(data.website, data.invite_link), inline=False)
+        embed.add_field(name="Version", value="v**{}**".format(version_stuff.version), inline=True)
+        embed.add_field(name="Library", value="**[discord.py](https://github.com/Rapptz/discord.py)** v**{}**"
+                        .format(discord.__version__), inline=True)
+        embed.add_field(name="System", value="Python version: **{0[0]}.{0[1]}.{0[2]}**".format(sys.version_info), inline=True)
+        embed.add_field(name="Support", value="| [Patreon]({}) | [Server]({}) | [Github]({}) | [Website]({}) | [Invite]({}) | [Vote]({}) |"
+                        .format(data.patreon, data.my_server, data.github, data.website, data.invite_link, data.dbl_vote), inline=False)
         await channel.send(embed=embed)
 
 

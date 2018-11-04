@@ -4,4 +4,7 @@ trusted = [249221746006163467]
 bot_role = "toxicbot"
 website = "https://drainyyy.jimdofree.com/"
 github = "https://github.com/Drainyyyy/ToxicBot"
+my_server = "https://discord.gg/7hwqtSD"
+patreon = "https://patreon.com/Drainyyy"
+dbl_vote = "https://discordbots.org/bot/497000115194822661/vote"
 msgs = 0

@@ -6,6 +6,8 @@ from discord import Embed, Color
 from discord.ext import commands
 from discord.ext.commands import context
 
+from util import data
+
 afk = []
 
 
@@ -97,9 +99,18 @@ class Misc:
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
+    @commands.command(name="patreon")
+    async def _patreon(self, ctx):
+        embed = Embed(title="Patreon", description="Hey. If you want to support me than you can donate me money on Patreon."
+                                                   "\nAt the moment my only gift for donating is a special rank on my [Discord server]({0})."
+                      .format(data.my_server), color=Color.from_rgb(125, 220, 113))
+        embed.add_field(name="Link", value="[Click here]({0})".format(data.patreon), inline=False)
+        embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+
     @commands.command(name="google")
-    async def _google(self, ctx, search):
-        embed = Embed(title="Google", description="[Click here to see the search result](http://lmgtfy.com/?q={0})".format(search)
+    async def _google(self, ctx, *, search):
+        embed = Embed(title="Google", description="[Click here to see the search result for **{0}**](http://lmgtfy.com/?q={0})".format(search)
                       , color=Color.from_rgb(125, 220, 113))
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
