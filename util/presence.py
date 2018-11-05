@@ -21,7 +21,7 @@ class Presence:
                 (discord.Status.dnd, discord.ActivityType.watching, data.website),
                 (discord.Status.dnd, discord.ActivityType.watching, "nothing | v{0}".format(version, important.prefix)),
                 (discord.Status.dnd, discord.ActivityType.watching, data.github),
-                (discord.Status.dnd, discord.ActivityType.watching, "Support my on Patreon. | {}patreon".format(important.prefix)),
+                (discord.Status.dnd, discord.ActivityType.watching, "Support me on Patreon. | {}patreon".format(important.prefix)),
             ]
 
             status, activity_type, activity = random.choice(presences)

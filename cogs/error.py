@@ -28,7 +28,8 @@ class ErrorHandling:
             description = "An error occurred while invoking the command."
 
         elif isinstance(error, commands.CheckFailure):
-            description = "It seems like you don't have enough permissions for this command."
+            description = "It seems like you don't have enough permissions for this command.\n" \
+                          "For some commands a special role named '{}' is required.".format(data.bot_role)
 
         elif isinstance(error, commands.BotMissingPermissions):
             description = "The bot doesn't have enough permissions for this command."
