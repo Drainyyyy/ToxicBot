@@ -1,5 +1,6 @@
 import asyncio
 import random
+import string
 
 import discord
 from discord import Embed, Color
@@ -114,6 +115,34 @@ class Misc:
                       , color=Color.from_rgb(125, 220, 113))
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
+
+    @commands.command(name="pwgen", aliases=["passgen", "passwordgenerator"])
+    async def _pwgen(self, ctx, length: int):
+        chars = string.ascii_letters + string.digits + string.punctuation
+        if length < 8:
+            embed = Embed(title="Password", description="Passwords should never be less than 8 letters."
+                          , color=Color.red())
+            embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+
+        elif length >= 95:
+
+            embed = Embed(title="Password", description="Unable to handle password length higher than 94."
+                          , color=Color.red())
+            embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+
+        elif length >= 8:
+            pw = "".join(random.sample(chars, length))
+            embed = Embed(title="Password", description="Password got sent per direct message."
+                          , color=Color.green())
+            embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+
+            embed = Embed(title="Password", description="Here's your Password:```{}```".format(pw)
+                          , color=Color.from_rgb(125, 220, 113))
+            embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            await ctx.author.send(embed=embed)
 
     @commands.command(name="alarm")
     async def _alarm(self, ctx, amount: int, *, notification):
