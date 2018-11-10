@@ -58,7 +58,10 @@ class Admin:
     @commands.command(name="serverlist", aliases=["servers", "guilds"])
     @perms.is_trusted()
     async def _serverlist(self, ctx):
-        embed = discord.Embed(title="Serverlist", description="```" + " | ".join(map(str, self.bot.guilds)) + "```", color=Color.blue())
+        embed = discord.Embed(title="Serverlist", color=Color.blue())
+        embed.add_field(name="Current Server Count", value="**{}** guilds with a total of **{}** users"
+                        .format(len(self.bot.guilds), len(self.bot.users)), inline=False)
+        embed.add_field(name="Servers", value="```" + "\n".join(map(str, self.bot.guilds)) + "```", inline=False)
         embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 

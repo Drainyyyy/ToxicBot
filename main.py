@@ -3,24 +3,25 @@ from discord import Color
 from discord.ext import commands
 from discord.ext.commands import context
 
-from cogs.commands import admin
+import cogs
+from cogs.commands import admin, help
 from cogs.util import perms
 from util import presence, important, data
 
 bot = commands.Bot(commands.when_mentioned_or(important.prefix), case_insensitive=True)
 bot.remove_command("help")
 
-cogs = [
+extensions = [
+    "cogs.dblstats",
     "cogs.error",
-    "cogs.dbl",
     "cogs.guild_join",
+    "cogs.commands.admin",
     "cogs.commands.debug",
     "cogs.commands.help",
-    "cogs.commands.misc",
-    "cogs.commands.special",
-    "cogs.commands.admin",
-    "cogs.commands.moderation",
     "cogs.commands.information",
+    "cogs.commands.misc",
+    "cogs.commands.moderation",
+    "cogs.commands.special",
 ]
 
 
@@ -56,7 +57,7 @@ async def process_commands(message: discord.Message):
             return
     await bot.invoke(ctx)
 
-for extension in cogs:
+for extension in extensions:
     try:
         bot.load_extension(extension)
         print("Successfully loaded {0}".format(extension))
@@ -69,8 +70,8 @@ for extension in cogs:
 async def _loadcog(ctx, extension):
         try:
             bot.load_extension(extension.lower())
-            if not cogs.__contains__(extension.lower()):
-                cogs.insert(0, extension.lower())
+            if not extensions.__contains__(extension.lower()):
+                extensions.insert(0, extension.lower())
             await ctx.send("``{0}`` has been loaded.".format(extension))
         except Exception:
             await ctx.send("``{0}`` cannot be loaded.".format(extension))
@@ -79,7 +80,7 @@ async def _loadcog(ctx, extension):
 @bot.command(name="reloadcogs", aliases=["reload"])
 @perms.is_owner()
 async def _reloadcogs(ctx):
-    for extension in cogs:
+    for extension in extensions:
         try:
             bot.unload_extension(extension)
             bot.load_extension(extension)

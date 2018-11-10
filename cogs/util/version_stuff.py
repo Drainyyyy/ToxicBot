@@ -1,11 +1,11 @@
 date = "---"
-version = "1.1.07a"
+version = "1.1.08a"
 recent = [
     "**__Changes__**",
-    "__Bot info__",
-    "_Improved the message design_",
+    "__AFK__",
+    "_Now the reason why a user was afk is shown when he returns._",
     "\n**__Commands__**",
-    "+__patreon__",
-    "_Shows you my Patreon page._",
+    "+__---__",
+    "_---_",
 
 ]

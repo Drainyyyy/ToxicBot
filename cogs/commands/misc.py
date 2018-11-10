@@ -9,7 +9,7 @@ from discord.ext.commands import context
 
 from util import data
 
-afk = []
+afk = {}
 
 
 class Misc:
@@ -19,14 +19,15 @@ class Misc:
     async def on_message(self, message):
         ctx = await self.bot.get_context(message, cls=context.Context)
         if ctx.author.id in afk:
-            embed = Embed(title="AFK", description="{0} returned from afk.".format(ctx.author), color=Color.green())
-            embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            embed = Embed(title="AFK", description="{} returned from afk.".format(ctx.author.mention), color=Color.green())
+            embed.add_field(name="Reason", value="```{}```".format(afk[ctx.author.id]))
             await ctx.send(embed=embed)
-            afk.remove(ctx.author.id)
+            afk.pop(ctx.author.id)
             return
         for mention in ctx.message.mentions:
             if mention.id in afk:
-                embed = Embed(title="AFK", description="{0} is currently afk".format(mention.mention), color=Color.orange())
+                embed = Embed(title="AFK", description="{} is currently afk.".format(mention.mention), color=Color.orange())
+                embed.add_field(name="Reason", value="```{}```".format(afk[mention.id]))
                 embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
 
@@ -68,16 +69,15 @@ class Misc:
             await ctx.send(embed=embed)
 
     @commands.command(name="afk")
-    async def _afk(self, ctx, *, reason="_No reason submitted._"):
+    async def _afk(self, ctx, *, reason="No reason submitted."):
 
         if ctx.author.id not in afk:
 
-            embed = Embed(title="AFK", description="{0} has gone afk.".format(ctx.author), color=Color.orange())
-            embed.add_field(name="Reason", value="```{0}```".format(reason), inline=True)
-            embed.set_footer(text="Requested by {0}".format(ctx.author), icon_url=ctx.author.avatar_url)
+            embed = Embed(title="AFK", description="{} has gone afk.".format(ctx.author.mention), color=Color.orange())
+            embed.add_field(name="Reason", value="```{}```".format(reason), inline=True)
             await ctx.send(embed=embed)
 
-            afk.insert(0, ctx.author.id)
+            afk[ctx.author.id] = reason
 
     @commands.command(name="mail")
     async def _mail(self, ctx, reciever: discord.Member, *, message):
