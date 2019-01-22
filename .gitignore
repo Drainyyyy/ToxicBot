@@ -39,6 +39,10 @@ additional_config.py
 utils/versions_stock/*
 cogs/cmds/debug.py
 
+#idea & vscode
+.vscode/*
+.idea/*
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
