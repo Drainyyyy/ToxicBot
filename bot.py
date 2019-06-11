@@ -13,12 +13,6 @@ from utils.db import blacklist
 from utils.db.db import Database
 from utils.message import embeds, colors
 
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='bot.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
-
 cog_list = []
 
 for cog in [file.stem for file in pathlib.Path("cogs/utils").glob("*.py")]:
