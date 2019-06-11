@@ -1,4 +1,4 @@
 asyncpg
 discord.py
 PyGithub
-DiscordBotsOrgAPI
+dblpy
