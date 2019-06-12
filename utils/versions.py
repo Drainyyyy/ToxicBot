@@ -2,7 +2,7 @@ import json
 import os
 import pathlib
 
-current_version = "2.0.0a"
+current_version = "2.0.1"
 path = "utils/versions_stock/"
 
 
