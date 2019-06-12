@@ -35,7 +35,7 @@ async def is_afk(user, message):
         pass
 
 
-class Miscellaneous:
+class Miscellaneous(commands.Cog, name="Miscellaneous"):
     def __init__(self, bot):
         self.bot = bot
 
@@ -63,7 +63,7 @@ class Miscellaneous:
             **Your question was**: ```{question}```
             **My answer is**:```{answer}```"""))
 
-    @commands.has_role(name=config.bot_role)
+    @commands.has_role(config.bot_role)
     @commands.command(name="say", aliases=["embed"], description="Let the bot say what you want but with an embed.")
     async def _say(self, ctx, *, text):
         embed = discord.Embed(color=colors.misc, description=text)

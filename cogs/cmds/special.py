@@ -12,7 +12,7 @@ from utils.db.profile import Profile
 from utils.message import embeds, colors, webhooks
 
 
-class Special:
+class Special(commands.Cog, name="Special"):
     def __init__(self, bot):
         self.bot = bot
         self.devmsgs = {}

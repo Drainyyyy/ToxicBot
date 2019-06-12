@@ -17,15 +17,11 @@ helps = {
 cog_utils = []
 
 
-class Help:
+class Help(commands.Cog, name="Help"):
     def __init__(self, bot):
         self.bot = bot
         self.cogs = self.bot.cogs
-        self.cogs.pop("Counter")
-        self.cogs.pop("ErrorHandling")
-        self.cogs.pop("GuildManagement")
-        self.cogs.pop("Debug")
-        self.cogs.pop("DiscordBotsOrgAPI")
+        self._unwanted_cogs = ["Counter", "ErrorHandling", "GuildManagement", "Debug", "DiscordBotsOrgAPI"]
 
     @commands.command(name="commands", aliases=["cmds", "cmdlist", "commandlist"], description="Returns a list of all commands.")
     async def _command_list(self, ctx):
@@ -33,7 +29,9 @@ class Help:
                               description=f"To get help for a specific command use **{prefix}help [command]**")
         embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
         for cog in self.cogs:
-            cmds = "``" + "``, ``".join(map(str, list(self.bot.get_cog_commands(cog)))) + "``"
+            if cog in self._unwanted_cogs:
+                continue
+            cmds = "``" + "``, ``".join(map(str, list(self.bot.get_cog(cog).get_commands()))) + "``"
             embed.add_field(name=cog, value=cmds, inline=False)
         await ctx.send(embed=embed)
 

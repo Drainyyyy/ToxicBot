@@ -10,7 +10,7 @@ from utils.message import embeds, colors
 from utils import versions, github
 
 
-class Information:
+class Information(commands.Cog, name="Information"):
     def __init__(self, bot):
         self.bot = bot
 

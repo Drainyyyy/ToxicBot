@@ -5,7 +5,7 @@ from utils.message import embeds, colors
 import config
 
 
-class Support:
+class Support(commands.Cog, name="Special"):
     def __init__(self, bot):
         self.bot = bot
 

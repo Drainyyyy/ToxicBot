@@ -10,10 +10,11 @@ async def webhook(bot, exception, ctx):
                            embed=embeds.error(message="Error Report", exception=exception, ctx=ctx))
 
 
-class ErrorHandling:
+class ErrorHandling(commands.Cog, name="ErrorHandling"):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
         if isinstance(exception, commands.CommandOnCooldown):
             msg = "The command you wanted to use is currently on cooldown."

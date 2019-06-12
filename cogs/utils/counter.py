@@ -1,8 +1,9 @@
 import datetime
 import time
+from discord.ext import commands as cmd
 
 
-class Counter:
+class Counter(cmd.Cog, name="Counter"):
     def __init__(self, bot):
         self.bot = bot
     messages = 0
@@ -13,18 +14,22 @@ class Counter:
     start_time = time.time()
 
     @staticmethod
+    @cmd.Cog.listener()
     async def on_message(message):
         Counter.messages += 1
 
     @staticmethod
+    @cmd.Cog.listener()
     async def on_command_completion(ctx):
         Counter.completed_commands += 1
 
     @staticmethod
+    @cmd.Cog.listener()
     async def on_command_error(ctx, error):
         Counter.failed_commands += 1
 
     @staticmethod
+    @cmd.Cog.listener()
     async def on_command(ctx):
         Counter.commands += 1
 

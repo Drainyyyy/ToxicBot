@@ -8,11 +8,11 @@ import datetime
 from utils.message import colors, embeds
 
 
-class Moderation:
+class Moderation(commands.Cog, name="Moderation"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.has_role(name=config.bot_role)
+    @commands.has_role(config.bot_role)
     @commands.bot_has_permissions(ban_members=True)
     @commands.command(name="ban", description="Swing the ban hammer!")
     async def _ban(self, ctx, victim: discord.Member, *, reason=config.standard_mod_message):
@@ -28,7 +28,7 @@ class Moderation:
         embed.set_footer(text=f"Banned by {ctx.author}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.has_role(name=config.bot_role)
+    @commands.has_role(config.bot_role)
     @commands.bot_has_permissions(kick_members=True)
     @commands.command(name="kick", description="Kick them out of your server!")
     async def _kick(self, ctx, victim: discord.Member, *, reason=config.standard_mod_message):
@@ -44,7 +44,7 @@ class Moderation:
         embed.set_footer(text=f"Kicked by {ctx.author}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.has_role(name=config.bot_role)
+    @commands.has_role(config.bot_role)
     @commands.bot_has_permissions(manage_messages=True)
     @commands.cooldown(1, 30)
     @commands.command(name="clear", aliases=["cc"], description="Clear the chat.")

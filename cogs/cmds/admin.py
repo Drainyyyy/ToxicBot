@@ -27,7 +27,7 @@ for cog in [file.stem for file in pathlib.Path("cogs/cmds").glob('*.py')]:
     cog_list.append(f"cogs.cmds.{cog}")
 
 
-class Administration:
+class Administration(commands.Cog, name="Administration"):
     def __init__(self, bot):
         self.bot = bot
 

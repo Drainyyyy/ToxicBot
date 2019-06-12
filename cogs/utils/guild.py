@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 
 from utils import channels
 from utils.message import colors
@@ -15,10 +16,11 @@ support = {
            }
 
 
-class GuildManagement:
+class GuildManagement(commands.Cog, name="GuildManagement"):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
     async def on_guild_join(self, guild):
         if len(latest) >= 4:
             latest.pop(4)
@@ -37,6 +39,7 @@ class GuildManagement:
 
         await channels.system_or_first(guild=guild, bot=self.bot).send(embed=embed)
 
+    @commands.Cog.listener()
     async def on_guild_leave(self, guild):
         print(f"[LEAVE] Left {guild}")
 

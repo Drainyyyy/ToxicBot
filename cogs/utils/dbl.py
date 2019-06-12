@@ -2,10 +2,12 @@ import dbl
 
 import asyncio
 
+from discord.ext import commands
+
 import config
 
 
-class DiscordBotsOrgAPI:
+class DiscordBotsOrgAPI(commands.Cog, name="DiscordBotsOrgAPI"):
     """
     Handles interactions with the discordbots.org API
     Modified example from https://discordbots.org/api/docs
@@ -23,7 +25,7 @@ class DiscordBotsOrgAPI:
         while True:
             print('[DBLAPI] attempting to post server count')
             try:
-                await self.dblpy.post_server_count()
+                await self.dblpy.post_guild_count()
                 print('[DBLAPI] posted server count ({})'.format(len(self.bot.guilds)))
             except Exception as e:
                 print('[DBLAPI] Failed to post server count\n{}: {}'.format(type(e).__name__, e))

@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 
-class Translate:
+class Translate(commands.Cog, name="Translate"):
     def __init__(self, bot):
         self.bot = bot
 
