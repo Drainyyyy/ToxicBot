@@ -48,6 +48,11 @@ async def run():
     except KeyboardInterrupt:
         await db.close()
         await bot.logout()
+    except ConnectionResetError or OSError:
+        await bot.logout()
+        await db.close()
+        await asyncio.sleep(60)
+        await run()
 
 
 class Bot(commands.Bot):
