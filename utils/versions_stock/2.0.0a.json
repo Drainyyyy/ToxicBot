@@ -1,0 +1,12 @@
+{
+    "changes": [
+        {
+            "name": "Everything",
+            "description": "The bot got recoded. Nothing is as it was before."
+        },
+        {
+            "name": "Github",
+            "description": "If you want to see the code you can [click here](https://github.com/Drainyyyy/ToxicBot)"
+        }
+    ]
+}

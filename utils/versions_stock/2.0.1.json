@@ -1,0 +1,12 @@
+{
+    "changes": [
+        {
+            "name": "Cog System",
+            "description": "In any version of discord.py 1.x.x the cog system got rewritten. I made my bot compatible."
+        },
+        {
+            "name": "Other",
+            "description": "I did some clarification in the example config. Nothing changed on the commands."
+        }
+    ]
+}
