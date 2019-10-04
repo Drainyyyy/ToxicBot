@@ -51,6 +51,7 @@ async def run():
         await bot.logout()
         await db.close()
         await asyncio.sleep(60)
+        await bot.clear()
         await run()
 
 
