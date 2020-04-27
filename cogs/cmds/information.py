@@ -59,14 +59,11 @@ class Information(commands.Cog, name="Information"):
     @commands.command(name="userinfo", aliases=["uinfo"], description="Get's you information about a specific user.")
     async def _userinfo(self, ctx, user: discord.Member):
 
-        activity = user.activity.name
-        activity_type = user.activity.state
         embed = discord.Embed(title="Userinfo", color=colors.information, description=f"Information about **{user.mention}**")
         embed.add_field(name="Client", value=str(user), inline=True)
         embed.add_field(name="Nickname", value=user.nick, inline=True)
         embed.add_field(name="ID", value=user.id, inline=False)
         embed.add_field(name="Roles", value=f"**{len(user.roles) - 1}** roles", inline=True)
-        embed.add_field(name="Activity", value=f"**{activity_type}** in **{activity}**", inline=True)
         embed.add_field(name="Server Join Date", value=f"**{user.joined_at.__format__('%A, %d. %B %Y at %H:%M:%S')}**", inline=True)
         embed.add_field(name="Account Creation Date", value=f"**{user.created_at.__format__('%A, %d. %B %Y at %H:%M:%S')}**", inline=True)
         embed.set_thumbnail(url=user.avatar_url)

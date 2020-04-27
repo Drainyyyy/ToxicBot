@@ -6,7 +6,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import context
 
-import config
+import additional_config as config
 from utils.presence import Presence
 from utils.db import blacklist
 from utils.db.db import Database
