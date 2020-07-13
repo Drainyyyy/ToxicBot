@@ -72,9 +72,9 @@ class Special(commands.Cog, name="Special"):
     async def _bug(self, ctx, *, description):
         embed = discord.Embed(title="Bug Report", color=colors.special)
         embed.add_field(name="Requirements", value=f"""Before you report your bug, try to complete the following checklist:
-        **1.** Which feature is bugging?
-        **2.** What is bugging? ( + detailed description of the bug)
-        **3.** How can I reproduce the bug?
+        **1.** What feature is bugging?
+        **2.** What is wrong? (detailed description of the bug)
+        **3.** How to reproduce it?
         **3.** [Check here]({config.repository_url}issues) if matching bug reports already exist. (If so just don't click the reaction)
         \nIf your bugreport doesn't match this checklist just send another one. If it does than click the reaction below.""", inline=False)
         embed.add_field(name="Your Report", value=f"**Now check your report again**:```{description}```")
@@ -90,8 +90,12 @@ class Special(commands.Cog, name="Special"):
         except asyncio.TimeoutError:
             await msg.edit(content="Your time ran out. Try again!")
         else:
-            github.post_issue(author=ctx.author, author_id=ctx.author.id, content=description)
+            dev_embed = discord.Embed(title="Bug Report", description=f"{ctx.author} ({ctx.author.id}) reported a bug. Server: {ctx.guild.id}")
+            dev_embed.add_field(name="Description", value=description, inline=False)
+            dev_embed.set_footer(text=f"Sent by {ctx.author}", icon_url=ctx.author.avatar_url)
+            await webhooks.webhook(config.notif_wh_url, self.bot, embed=dev_embed)
             await ctx.send("Successfully sent the bugreport.")
+            print(f"[BUG] {ctx.author} ({ctx.author.id}) reported a bug. Server: {ctx.guild.id}")
 
     @commands.group(name="profile", description="Make a profile of yourself.", invoke_without_command=True)
     async def _profile(self, ctx):

@@ -60,7 +60,6 @@ class Bot(commands.Bot):
         super().__init__(command_prefix=commands.when_mentioned_or(config.prefix), case_insensitive=True, owner_id=config.owner_id)
         self.db = kwargs.pop("db")
 
-
     async def on_ready(self):
         await self.wait_until_ready()
 
