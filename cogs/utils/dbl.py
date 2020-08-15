@@ -28,7 +28,7 @@ class DiscordBotsOrgAPI(commands.Cog, name="DiscordBotsOrgAPI"):
                 await self.dblpy.post_guild_count()
                 print('[DBLAPI] posted server count ({})'.format(len(self.bot.guilds)))
             except Exception as e:
-                print('[DBLAPI] Failed to post server count\n{}: {}'.format(type(e).__name__, e))
+                print('[DBLAPI] Failed to post server count | {}: {}'.format(type(e).__name__, e))
             await asyncio.sleep(1800)
 
 
