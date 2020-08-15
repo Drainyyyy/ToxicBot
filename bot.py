@@ -50,6 +50,14 @@ async def run():
     except ConnectionResetError or OSError:
         await bot.logout()
         await db.close()
+
+        for ext in cog_list:
+            try:
+                bot.unload_extension(ext)
+                print(f"[Cogs] Unloaded '{ext}'")
+            except ImportError as error:
+                print(f"[Cogs] Cannot unload '{ext}' [{error}]")
+
         await asyncio.sleep(60)
         await bot.clear()
         await run()
