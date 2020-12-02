@@ -7,7 +7,7 @@ class Translate(commands.Cog, name="Translate"):
 
     @commands.command(name="binary", aliases=["ttb"], description="Translate a text to binary.")
     async def _binary(self, ctx, *, text):
-        binary = ' '.join(map(bin, bytearray(text)))
+        binary = ' '.join(map(lambda x: bin(x)[2:], bytearray(text, 'utf-8')))
         await ctx.send(str(binary))
 
 
